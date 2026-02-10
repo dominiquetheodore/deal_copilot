@@ -125,45 +125,58 @@
         }
         
         .total-score {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: white;
+            color: #2d3748;
             padding: 40px 30px;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e2e8f0;
         }
         
         .total-score h2 {
             font-size: 1.2em;
             margin-bottom: 15px;
-            opacity: 0.95;
             font-weight: 600;
             letter-spacing: 1px;
+            color: #2d3748;
         }
         
         .total-score .score {
             font-size: 5em;
             font-weight: 700;
             margin: 15px 0;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: color 0.3s;
+        }
+        
+        .total-score .score.red {
+            color: #e53e3e;
+        }
+        
+        .total-score .score.yellow {
+            color: #dd6b20;
+        }
+        
+        .total-score .score.green {
+            color: #38a169;
+        }
+        
+        .total-score .score.gray {
+            color: #a0aec0;
         }
         
         .total-score .max-score {
             font-size: 1.3em;
-            opacity: 0.9;
             font-weight: 500;
+            color: #718096;
         }
         
-        .total-score .rating {
-            font-size: 1.2em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 15px;
-            padding: 12px 20px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 8px;
-            display: inline-block;
+        .color-indicator {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #e53e3e 0%, #e53e3e 30%, #dd6b20 30%, #dd6b20 60%, #38a169 60%, #38a169 100%);
+            border-radius: 4px;
+            margin: 20px 0 15px 0;
         }
         
         .actions {
@@ -182,14 +195,13 @@
         }
         
         .btn-primary {
-            background: rgba(255,255,255,0.2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border: 2px solid rgba(255,255,255,0.3);
         }
         
         .btn-primary:hover {
-            background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
         
         @media (max-width: 1024px) {
@@ -318,9 +330,9 @@
             <div class="score-column">
                 <div class="total-score">
                     <h2>FINAL SCORE</h2>
-                    <div class="score" id="totalScore">0</div>
+                    <div class="score gray" id="totalScore">0</div>
                     <div class="max-score">out of 13 points</div>
-                    <div class="rating" id="rating">SELECT CRITERIA</div>
+                    <div class="color-indicator"></div>
                     
                     <div class="actions">
                         <button class="btn-primary" onclick="resetForm()">🔄 Reset</button>
@@ -358,18 +370,22 @@
         
         function calculateTotal() {
             const total = scores.profit + scores.timeline + scores.placement + scores.type;
-            document.getElementById('totalScore').textContent = total;
-            document.getElementById('rating').textContent = getRating(total);
-        }
-        
-        function getRating(score) {
-            const percentage = (score / 13) * 100;
-            if (percentage >= 85) return 'EXCELLENT DEAL';
-            if (percentage >= 70) return 'STRONG DEAL';
-            if (percentage >= 55) return 'GOOD DEAL';
-            if (percentage >= 40) return 'MODERATE DEAL';
-            if (percentage > 0) return 'WEAK DEAL';
-            return 'SELECT CRITERIA';
+            const scoreElement = document.getElementById('totalScore');
+            scoreElement.textContent = total;
+            
+            // Remove all color classes
+            scoreElement.classList.remove('red', 'yellow', 'green', 'gray');
+            
+            // Apply color based on score
+            if (total === 0) {
+                scoreElement.classList.add('gray');
+            } else if (total >= 3 && total <= 6) {
+                scoreElement.classList.add('red');
+            } else if (total >= 7 && total <= 9) {
+                scoreElement.classList.add('yellow');
+            } else if (total >= 10 && total <= 13) {
+                scoreElement.classList.add('green');
+            }
         }
         
         function resetForm() {
@@ -387,9 +403,11 @@
                 // Reset scores
                 scores = { profit: 0, timeline: 0, placement: 0, type: 0 };
                 
-                // Reset total
-                document.getElementById('totalScore').textContent = '0';
-                document.getElementById('rating').textContent = 'SELECT CRITERIA';
+                // Reset total and color
+                const scoreElement = document.getElementById('totalScore');
+                scoreElement.textContent = '0';
+                scoreElement.classList.remove('red', 'yellow', 'green');
+                scoreElement.classList.add('gray');
             }
         }
     </script>
