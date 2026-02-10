@@ -16,13 +16,16 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 800px;
+            width: 100%;
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
         }
@@ -30,157 +33,161 @@
         header {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
         }
         
         header h1 {
-            font-size: 2em;
+            font-size: 2.2em;
             margin-bottom: 10px;
+            font-weight: 700;
         }
         
         header p {
             opacity: 0.9;
-            font-size: 0.95em;
+            font-size: 1em;
         }
         
         .content {
-            padding: 30px;
+            padding: 40px;
         }
         
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+        .deal-info {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 12px;
             margin-bottom: 30px;
         }
         
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2d3748;
-            font-size: 0.9em;
-        }
-        
-        input, select {
+        .deal-info input {
+            width: 100%;
             padding: 12px;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
             font-size: 1em;
-            transition: all 0.3s;
+            margin-bottom: 15px;
         }
         
-        input:focus, select:focus {
+        .deal-info input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
-        .section-title {
-            font-size: 1.3em;
-            color: #1a202c;
-            margin: 30px 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+        .criteria-section {
+            margin-bottom: 25px;
         }
         
-        .score-section {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .score-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            margin-bottom: 8px;
-            background: white;
-            border-radius: 8px;
-            border-left: 4px solid #cbd5e0;
-        }
-        
-        .score-item.excellent {
-            border-left-color: #48bb78;
-            background: #f0fff4;
-        }
-        
-        .score-item.good {
-            border-left-color: #4299e1;
-            background: #ebf8ff;
-        }
-        
-        .score-item.fair {
-            border-left-color: #ed8936;
-            background: #fffaf0;
-        }
-        
-        .score-item.poor {
-            border-left-color: #f56565;
-            background: #fff5f5;
-        }
-        
-        .score-label {
-            font-weight: 500;
-            color: #2d3748;
-        }
-        
-        .score-value {
-            font-weight: 700;
+        .criteria-label {
             font-size: 1.1em;
-            color: #1a202c;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .radio-option:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+        
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        
+        .radio-option.selected {
+            background: #ebf8ff;
+            border-color: #4299e1;
+        }
+        
+        .option-label {
+            flex: 1;
+            font-size: 1em;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        
+        .option-score {
+            display: none;
         }
         
         .total-score {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
-            border-radius: 12px;
+            padding: 40px;
+            border-radius: 16px;
             text-align: center;
-            margin-top: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
         
         .total-score h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            opacity: 0.9;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
         
         .total-score .score {
-            font-size: 4em;
+            font-size: 5em;
             font-weight: 700;
-            margin: 10px 0;
+            margin: 15px 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .total-score .max-score {
+            font-size: 1.5em;
+            opacity: 0.9;
+            font-weight: 500;
         }
         
         .total-score .rating {
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            margin-top: 10px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: inline-block;
         }
         
         .actions {
             display: flex;
             gap: 15px;
             margin-top: 30px;
-            flex-wrap: wrap;
+            justify-content: center;
         }
         
         button {
-            flex: 1;
-            min-width: 150px;
-            padding: 15px 30px;
+            padding: 16px 40px;
             font-size: 1em;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -192,33 +199,56 @@
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
         
-        .btn-secondary {
-            background: #e2e8f0;
+        .score-breakdown {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .score-breakdown h3 {
             color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.2em;
         }
         
-        .btn-secondary:hover {
-            background: #cbd5e0;
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 4px solid #cbd5e0;
+        }
+        
+        .breakdown-item.scored {
+            border-left-color: #48bb78;
+            background: #f0fff4;
         }
         
         @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
+            .content {
+                padding: 25px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
             }
             
             .total-score .score {
-                font-size: 3em;
+                font-size: 3.5em;
             }
             
             .actions {
                 flex-direction: column;
-            }
-            
-            button {
-                width: 100%;
             }
         }
     </style>
@@ -227,316 +257,215 @@
     <div class="container">
         <header>
             <h1>✈️ Aircraft Deal Scorer</h1>
-            <p>Comprehensive evaluation framework for aircraft leasing opportunities</p>
+            <p>Veling Ltd - Quick Deal Evaluation</p>
         </header>
         
         <div class="content">
-            <h2 class="section-title">Aircraft Details</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="aircraftType">Aircraft Type</label>
-                    <input type="text" id="aircraftType" placeholder="e.g., A320neo, B737-800">
-                </div>
-                <div class="form-group">
-                    <label for="msn">MSN/Registration</label>
-                    <input type="text" id="msn" placeholder="e.g., MSN 12345">
-                </div>
-                <div class="form-group">
-                    <label for="age">Age (years)</label>
-                    <input type="number" id="age" min="0" max="50" step="0.1" value="10">
-                </div>
-                <div class="form-group">
-                    <label for="cycles">Total Cycles</label>
-                    <input type="number" id="cycles" min="0" value="15000">
+            <div class="deal-info">
+                <input type="text" id="dealName" placeholder="Deal Name / Aircraft MSN (e.g., A320neo MSN 12345)">
+            </div>
+            
+            <!-- Profit -->
+            <div class="criteria-section">
+                <label class="criteria-label">💰 Profit ($)</label>
+                <div class="radio-group">
+                    <label class="radio-option" data-criterion="profit">
+                        <input type="radio" name="profit" value="1" data-label="500k to 1m">
+                        <span class="option-label">$500k to $1M</span>
+                        <span class="option-score">1</span>
+                    </label>
+                    <label class="radio-option" data-criterion="profit">
+                        <input type="radio" name="profit" value="2" data-label="1m to 2m">
+                        <span class="option-label">$1M to $2M</span>
+                        <span class="option-score">2</span>
+                    </label>
+                    <label class="radio-option" data-criterion="profit">
+                        <input type="radio" name="profit" value="4" data-label=">2m to 3m">
+                        <span class="option-label">&gt;$2M to $3M</span>
+                        <span class="option-score">4</span>
+                    </label>
                 </div>
             </div>
             
-            <h2 class="section-title">Asset Quality (25 points)</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="ageScore">Age vs Market (5)</label>
-                    <input type="number" id="ageScore" min="0" max="5" step="0.5" value="4">
-                </div>
-                <div class="form-group">
-                    <label for="cyclesScore">Cycles/Hours Remaining (5)</label>
-                    <input type="number" id="cyclesScore" min="0" max="5" step="0.5" value="4">
-                </div>
-                <div class="form-group">
-                    <label for="engineScore">Engine Status (5)</label>
-                    <input type="number" id="engineScore" min="0" max="5" step="0.5" value="4">
-                </div>
-                <div class="form-group">
-                    <label for="maintenanceScore">Maintenance Records (5)</label>
-                    <input type="number" id="maintenanceScore" min="0" max="5" step="0.5" value="4">
-                </div>
-                <div class="form-group">
-                    <label for="configScore">Configuration (5)</label>
-                    <input type="number" id="configScore" min="0" max="5" step="0.5" value="4">
+            <!-- Project Timeline -->
+            <div class="criteria-section">
+                <label class="criteria-label">⏱️ Project Timeline (months)</label>
+                <div class="radio-group">
+                    <label class="radio-option" data-criterion="timeline">
+                        <input type="radio" name="timeline" value="3" data-label="0-6 months">
+                        <span class="option-label">0 - 6 months</span>
+                        <span class="option-score">3</span>
+                    </label>
+                    <label class="radio-option" data-criterion="timeline">
+                        <input type="radio" name="timeline" value="2" data-label="6-12 months">
+                        <span class="option-label">6 - 12 months</span>
+                        <span class="option-score">2</span>
+                    </label>
+                    <label class="radio-option" data-criterion="timeline">
+                        <input type="radio" name="timeline" value="1" data-label=">12 months">
+                        <span class="option-label">&gt;12 months</span>
+                        <span class="option-score">1</span>
+                    </label>
                 </div>
             </div>
             
-            <h2 class="section-title">Market Fundamentals (20 points)</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="leaseRateScore">Lease Rates vs Historical (5)</label>
-                    <input type="number" id="leaseRateScore" min="0" max="5" step="0.5" value="4">
-                </div>
-                <div class="form-group">
-                    <label for="fleetScore">Fleet Size & Diversity (5)</label>
-                    <input type="number" id="fleetScore" min="0" max="5" step="0.5" value="4">
-                </div>
-                <div class="form-group">
-                    <label for="partoutScore">Part-out Value Floor (5)</label>
-                    <input type="number" id="partoutScore" min="0" max="5" step="0.5" value="3">
-                </div>
-                <div class="form-group">
-                    <label for="replacementScore">Replacement Cost Trends (5)</label>
-                    <input type="number" id="replacementScore" min="0" max="5" step="0.5" value="4">
-                </div>
-            </div>
-            
-            <h2 class="section-title">Lessee Credit (15 points)</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="financialScore">Financial Strength (8)</label>
-                    <input type="number" id="financialScore" min="0" max="8" step="0.5" value="6">
-                </div>
-                <div class="form-group">
-                    <label for="geoRiskScore">Geographic/Political Risk (4)</label>
-                    <input type="number" id="geoRiskScore" min="0" max="4" step="0.5" value="3">
-                </div>
-                <div class="form-group">
-                    <label for="opTrackScore">Operational Track Record (3)</label>
-                    <input type="number" id="opTrackScore" min="0" max="3" step="0.5" value="2.5">
+            <!-- Placement -->
+            <div class="criteria-section">
+                <label class="criteria-label">🎯 Placement Probability</label>
+                <div class="radio-group">
+                    <label class="radio-option" data-criterion="placement">
+                        <input type="radio" name="placement" value="4" data-label="Yes">
+                        <span class="option-label">Yes - High Confidence</span>
+                        <span class="option-score">4</span>
+                    </label>
+                    <label class="radio-option" data-criterion="placement">
+                        <input type="radio" name="placement" value="2" data-label="Likely">
+                        <span class="option-label">Likely</span>
+                        <span class="option-score">2</span>
+                    </label>
+                    <label class="radio-option" data-criterion="placement">
+                        <input type="radio" name="placement" value="0" data-label="No">
+                        <span class="option-label">No / Uncertain</span>
+                        <span class="option-score">0</span>
+                    </label>
                 </div>
             </div>
             
-            <h2 class="section-title">Deal Economics (25 points)</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="priceScore">Purchase Price vs Value (8)</label>
-                    <input type="number" id="priceScore" min="0" max="8" step="0.5" value="6">
-                </div>
-                <div class="form-group">
-                    <label for="returnScore">Cash-on-Cash Return (7)</label>
-                    <input type="number" id="returnScore" min="0" max="7" step="0.5" value="5">
-                </div>
-                <div class="form-group">
-                    <label for="leaseTermScore">Lease Term Remaining (5)</label>
-                    <input type="number" id="leaseTermScore" min="0" max="5" step="0.5" value="4">
-                </div>
-                <div class="form-group">
-                    <label for="exitScore">Exit Strategy Clarity (5)</label>
-                    <input type="number" id="exitScore" min="0" max="5" step="0.5" value="4">
+            <!-- Type of Aircraft -->
+            <div class="criteria-section">
+                <label class="criteria-label">✈️ Aircraft Type</label>
+                <div class="radio-group">
+                    <label class="radio-option" data-criterion="type">
+                        <input type="radio" name="type" value="2" data-label="Narrowbody">
+                        <span class="option-label">Narrowbody</span>
+                        <span class="option-score">2</span>
+                    </label>
+                    <label class="radio-option" data-criterion="type">
+                        <input type="radio" name="type" value="1" data-label="Widebody">
+                        <span class="option-label">Widebody</span>
+                        <span class="option-score">1</span>
+                    </label>
                 </div>
             </div>
             
-            <h2 class="section-title">Transaction Risk (15 points)</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="legalScore">Legal/Documentation (5)</label>
-                    <input type="number" id="legalScore" min="0" max="5" step="0.5" value="4">
+            <div class="score-breakdown" id="breakdown">
+                <h3>Score Breakdown</h3>
+                <div class="breakdown-item" id="profit-breakdown">
+                    <span>Profit</span>
+                    <span>-</span>
                 </div>
-                <div class="form-group">
-                    <label for="redeliveryScore">Redelivery Risk (5)</label>
-                    <input type="number" id="redeliveryScore" min="0" max="5" step="0.5" value="4">
+                <div class="breakdown-item" id="timeline-breakdown">
+                    <span>Project Timeline</span>
+                    <span>-</span>
                 </div>
-                <div class="form-group">
-                    <label for="titleScore">Title/Ownership Clarity (5)</label>
-                    <input type="number" id="titleScore" min="0" max="5" step="0.5" value="5">
+                <div class="breakdown-item" id="placement-breakdown">
+                    <span>Placement</span>
+                    <span>-</span>
+                </div>
+                <div class="breakdown-item" id="type-breakdown">
+                    <span>Type</span>
+                    <span>-</span>
                 </div>
             </div>
             
-            <div id="results">
-                <h2 class="section-title">Score Breakdown</h2>
-                <div class="score-section">
-                    <div class="score-item" id="assetQualityResult">
-                        <span class="score-label">Asset Quality</span>
-                        <span class="score-value">20.0 / 25</span>
-                    </div>
-                    <div class="score-item" id="marketResult">
-                        <span class="score-label">Market Fundamentals</span>
-                        <span class="score-value">15.0 / 20</span>
-                    </div>
-                    <div class="score-item" id="lesseeCreditResult">
-                        <span class="score-label">Lessee Credit</span>
-                        <span class="score-value">11.5 / 15</span>
-                    </div>
-                    <div class="score-item" id="economicsResult">
-                        <span class="score-label">Deal Economics</span>
-                        <span class="score-value">19.0 / 25</span>
-                    </div>
-                    <div class="score-item" id="riskResult">
-                        <span class="score-label">Transaction Risk</span>
-                        <span class="score-value">13.0 / 15</span>
-                    </div>
-                </div>
-                
-                <div class="total-score">
-                    <h2>TOTAL SCORE</h2>
-                    <div class="score" id="totalScore">78.5</div>
-                    <div class="rating" id="rating">STRONG BUY</div>
-                </div>
+            <div class="total-score">
+                <h2>FINAL SCORE</h2>
+                <div class="score" id="totalScore">0</div>
+                <div class="max-score">out of 13 points</div>
+                <div class="rating" id="rating">SELECT CRITERIA</div>
             </div>
             
             <div class="actions">
-                <button class="btn-primary" onclick="calculateScore()">Calculate Score</button>
-                <button class="btn-secondary" onclick="exportJSON()">Export JSON</button>
-                <button class="btn-secondary" onclick="resetForm()">Reset</button>
+                <button class="btn-primary" onclick="resetForm()">🔄 Reset</button>
             </div>
         </div>
     </div>
     
     <script>
-        function calculateScore() {
-            // Asset Quality (25 points)
-            const assetQuality = 
-                parseFloat(document.getElementById('ageScore').value) +
-                parseFloat(document.getElementById('cyclesScore').value) +
-                parseFloat(document.getElementById('engineScore').value) +
-                parseFloat(document.getElementById('maintenanceScore').value) +
-                parseFloat(document.getElementById('configScore').value);
-            
-            // Market Fundamentals (20 points)
-            const market = 
-                parseFloat(document.getElementById('leaseRateScore').value) +
-                parseFloat(document.getElementById('fleetScore').value) +
-                parseFloat(document.getElementById('partoutScore').value) +
-                parseFloat(document.getElementById('replacementScore').value);
-            
-            // Lessee Credit (15 points)
-            const lesseeCredit = 
-                parseFloat(document.getElementById('financialScore').value) +
-                parseFloat(document.getElementById('geoRiskScore').value) +
-                parseFloat(document.getElementById('opTrackScore').value);
-            
-            // Deal Economics (25 points)
-            const economics = 
-                parseFloat(document.getElementById('priceScore').value) +
-                parseFloat(document.getElementById('returnScore').value) +
-                parseFloat(document.getElementById('leaseTermScore').value) +
-                parseFloat(document.getElementById('exitScore').value);
-            
-            // Transaction Risk (15 points)
-            const risk = 
-                parseFloat(document.getElementById('legalScore').value) +
-                parseFloat(document.getElementById('redeliveryScore').value) +
-                parseFloat(document.getElementById('titleScore').value);
-            
-            // Total Score
-            const total = assetQuality + market + lesseeCredit + economics + risk;
-            
-            // Update UI
-            updateScoreItem('assetQualityResult', 'Asset Quality', assetQuality, 25);
-            updateScoreItem('marketResult', 'Market Fundamentals', market, 20);
-            updateScoreItem('lesseeCreditResult', 'Lessee Credit', lesseeCredit, 15);
-            updateScoreItem('economicsResult', 'Deal Economics', economics, 25);
-            updateScoreItem('riskResult', 'Transaction Risk', risk, 15);
-            
-            document.getElementById('totalScore').textContent = total.toFixed(1);
-            document.getElementById('rating').textContent = getRating(total);
-            
-            // Scroll to results
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        // Score tracking
+        let scores = {
+            profit: 0,
+            timeline: 0,
+            placement: 0,
+            type: 0
+        };
+        
+        // Add event listeners to all radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Update visual selection
+                document.querySelectorAll(`label[data-criterion="${this.name}"]`).forEach(label => {
+                    label.classList.remove('selected');
+                });
+                this.closest('label').classList.add('selected');
+                
+                // Update score
+                scores[this.name] = parseInt(this.value);
+                
+                // Update breakdown
+                updateBreakdown(this.name, this.getAttribute('data-label'), this.value);
+                
+                // Calculate total
+                calculateTotal();
+            });
+        });
+        
+        function updateBreakdown(criterion, label, score) {
+            const element = document.getElementById(`${criterion}-breakdown`);
+            element.innerHTML = `<span>${capitalize(criterion)}: ${label}</span><span>${score} pts</span>`;
+            element.classList.add('scored');
         }
         
-        function updateScoreItem(id, label, score, max) {
-            const element = document.getElementById(id);
-            element.querySelector('.score-label').textContent = label;
-            element.querySelector('.score-value').textContent = `${score.toFixed(1)} / ${max}`;
-            
-            const percentage = (score / max) * 100;
-            element.className = 'score-item';
-            if (percentage >= 85) element.classList.add('excellent');
-            else if (percentage >= 70) element.classList.add('good');
-            else if (percentage >= 50) element.classList.add('fair');
-            else element.classList.add('poor');
+        function calculateTotal() {
+            const total = scores.profit + scores.timeline + scores.placement + scores.type;
+            document.getElementById('totalScore').textContent = total;
+            document.getElementById('rating').textContent = getRating(total);
         }
         
         function getRating(score) {
-            if (score >= 85) return 'STRONG BUY';
-            if (score >= 75) return 'BUY';
-            if (score >= 65) return 'CONDITIONAL';
-            if (score >= 50) return 'HOLD';
-            return 'PASS';
+            const percentage = (score / 13) * 100;
+            if (percentage >= 85) return 'EXCELLENT DEAL';
+            if (percentage >= 70) return 'STRONG DEAL';
+            if (percentage >= 55) return 'GOOD DEAL';
+            if (percentage >= 40) return 'MODERATE DEAL';
+            if (percentage > 0) return 'WEAK DEAL';
+            return 'SELECT CRITERIA';
         }
         
-        function exportJSON() {
-            const deal = {
-                aircraft: {
-                    type: document.getElementById('aircraftType').value,
-                    msn: document.getElementById('msn').value,
-                    age: parseFloat(document.getElementById('age').value),
-                    cycles: parseInt(document.getElementById('cycles').value)
-                },
-                scores: {
-                    assetQuality: {
-                        age: parseFloat(document.getElementById('ageScore').value),
-                        cycles: parseFloat(document.getElementById('cyclesScore').value),
-                        engine: parseFloat(document.getElementById('engineScore').value),
-                        maintenance: parseFloat(document.getElementById('maintenanceScore').value),
-                        config: parseFloat(document.getElementById('configScore').value)
-                    },
-                    market: {
-                        leaseRate: parseFloat(document.getElementById('leaseRateScore').value),
-                        fleet: parseFloat(document.getElementById('fleetScore').value),
-                        partout: parseFloat(document.getElementById('partoutScore').value),
-                        replacement: parseFloat(document.getElementById('replacementScore').value)
-                    },
-                    lesseeCredit: {
-                        financial: parseFloat(document.getElementById('financialScore').value),
-                        geoRisk: parseFloat(document.getElementById('geoRiskScore').value),
-                        opTrack: parseFloat(document.getElementById('opTrackScore').value)
-                    },
-                    economics: {
-                        price: parseFloat(document.getElementById('priceScore').value),
-                        returns: parseFloat(document.getElementById('returnScore').value),
-                        leaseTerm: parseFloat(document.getElementById('leaseTermScore').value),
-                        exit: parseFloat(document.getElementById('exitScore').value)
-                    },
-                    risk: {
-                        legal: parseFloat(document.getElementById('legalScore').value),
-                        redelivery: parseFloat(document.getElementById('redeliveryScore').value),
-                        title: parseFloat(document.getElementById('titleScore').value)
-                    }
-                },
-                totalScore: parseFloat(document.getElementById('totalScore').textContent),
-                rating: document.getElementById('rating').textContent,
-                timestamp: new Date().toISOString()
-            };
-            
-            const dataStr = JSON.stringify(deal, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `deal-${deal.aircraft.msn || 'export'}-${Date.now()}.json`;
-            link.click();
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
         }
         
         function resetForm() {
-            if (confirm('Reset all fields to default values?')) {
-                document.querySelectorAll('input[type="number"]').forEach(input => {
-                    if (input.id === 'age') input.value = 10;
-                    else if (input.id === 'cycles') input.value = 15000;
-                    else if (input.max === '5') input.value = 4;
-                    else if (input.max === '8') input.value = 6;
-                    else if (input.max === '7') input.value = 5;
-                    else if (input.max === '4') input.value = 3;
-                    else if (input.max === '3') input.value = 2.5;
+            if (confirm('Reset all selections?')) {
+                // Clear all radio selections
+                document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.checked = false;
                 });
-                document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
-                calculateScore();
+                
+                // Remove visual selections
+                document.querySelectorAll('.radio-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Reset scores
+                scores = { profit: 0, timeline: 0, placement: 0, type: 0 };
+                
+                // Reset breakdown
+                document.querySelectorAll('.breakdown-item').forEach(item => {
+                    item.classList.remove('scored');
+                    const label = item.querySelector('span:first-child').textContent.split(':')[0];
+                    item.innerHTML = `<span>${label}</span><span>-</span>`;
+                });
+                
+                // Reset total
+                document.getElementById('totalScore').textContent = '0';
+                document.getElementById('rating').textContent = 'SELECT CRITERIA';
+                
+                // Clear deal name
+                document.getElementById('dealName').value = '';
             }
         }
-        
-        // Auto-calculate on input change
-        document.querySelectorAll('input[type="number"]').forEach(input => {
-            input.addEventListener('input', calculateScore);
-        });
-        
-        // Initial calculation
-        calculateScore();
     </script>
 </body>
 </html>
