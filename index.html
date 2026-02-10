@@ -22,7 +22,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             width: 100%;
             background: white;
             border-radius: 20px;
@@ -50,32 +50,24 @@
         
         .content {
             padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            align-items: start;
         }
         
-        .deal-info {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
+        .criteria-column {
+            display: flex;
+            flex-direction: column;
         }
         
-        .deal-info input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1em;
-            margin-bottom: 15px;
-        }
-        
-        .deal-info input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        .score-column {
+            position: sticky;
+            top: 20px;
         }
         
         .criteria-section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .criteria-label {
@@ -135,15 +127,14 @@
         .total-score {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px;
+            padding: 40px 30px;
             border-radius: 16px;
             text-align: center;
-            margin: 30px 0;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
         
         .total-score h2 {
-            font-size: 1.3em;
+            font-size: 1.2em;
             margin-bottom: 15px;
             opacity: 0.95;
             font-weight: 600;
@@ -158,32 +149,30 @@
         }
         
         .total-score .max-score {
-            font-size: 1.5em;
+            font-size: 1.3em;
             opacity: 0.9;
             font-weight: 500;
         }
         
         .total-score .rating {
-            font-size: 1.4em;
+            font-size: 1.2em;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 10px;
-            padding: 12px 24px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            padding: 12px 20px;
             background: rgba(255,255,255,0.2);
             border-radius: 8px;
             display: inline-block;
         }
         
         .actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
+            margin-top: 25px;
         }
         
         button {
-            padding: 16px 40px;
+            width: 100%;
+            padding: 16px;
             font-size: 1em;
             font-weight: 600;
             border: none;
@@ -193,41 +182,25 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(255,255,255,0.2);
             color: white;
+            border: 2px solid rgba(255,255,255,0.3);
         }
         
         .btn-primary:hover {
+            background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
         
-        .score-breakdown {
-            background: #f7fafc;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .score-breakdown h3 {
-            color: #2d3748;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        
-        .breakdown-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            border-left: 4px solid #cbd5e0;
-        }
-        
-        .breakdown-item.scored {
-            border-left-color: #48bb78;
-            background: #f0fff4;
+        @media (max-width: 1024px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .score-column {
+                position: static;
+            }
         }
         
         @media (max-width: 768px) {
@@ -246,10 +219,6 @@
             .total-score .score {
                 font-size: 3.5em;
             }
-            
-            .actions {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -261,122 +230,102 @@
         </header>
         
         <div class="content">
-            <div class="deal-info">
-                <input type="text" id="dealName" placeholder="Deal Name / Aircraft MSN (e.g., A320neo MSN 12345)">
-            </div>
-            
-            <!-- Profit -->
-            <div class="criteria-section">
-                <label class="criteria-label">💰 Profit ($)</label>
-                <div class="radio-group">
-                    <label class="radio-option" data-criterion="profit">
-                        <input type="radio" name="profit" value="1" data-label="500k to 1m">
-                        <span class="option-label">$500k to $1M</span>
-                        <span class="option-score">1</span>
-                    </label>
-                    <label class="radio-option" data-criterion="profit">
-                        <input type="radio" name="profit" value="2" data-label="1m to 2m">
-                        <span class="option-label">$1M to $2M</span>
-                        <span class="option-score">2</span>
-                    </label>
-                    <label class="radio-option" data-criterion="profit">
-                        <input type="radio" name="profit" value="4" data-label=">2m to 3m">
-                        <span class="option-label">&gt;$2M to $3M</span>
-                        <span class="option-score">4</span>
-                    </label>
+            <div class="criteria-column">
+                <!-- Profit -->
+                <div class="criteria-section">
+                    <label class="criteria-label">💰 Profit ($)</label>
+                    <div class="radio-group">
+                        <label class="radio-option" data-criterion="profit">
+                            <input type="radio" name="profit" value="1" data-label="500k to 1m">
+                            <span class="option-label">$500k to $1M</span>
+                            <span class="option-score">1</span>
+                        </label>
+                        <label class="radio-option" data-criterion="profit">
+                            <input type="radio" name="profit" value="2" data-label="1m to 2m">
+                            <span class="option-label">$1M to $2M</span>
+                            <span class="option-score">2</span>
+                        </label>
+                        <label class="radio-option" data-criterion="profit">
+                            <input type="radio" name="profit" value="4" data-label=">2m">
+                            <span class="option-label">&gt;$2M</span>
+                            <span class="option-score">4</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Project Timeline -->
+                <div class="criteria-section">
+                    <label class="criteria-label">⏱️ Project Timeline (months)</label>
+                    <div class="radio-group">
+                        <label class="radio-option" data-criterion="timeline">
+                            <input type="radio" name="timeline" value="3" data-label="0-6 months">
+                            <span class="option-label">0 - 6 months</span>
+                            <span class="option-score">3</span>
+                        </label>
+                        <label class="radio-option" data-criterion="timeline">
+                            <input type="radio" name="timeline" value="2" data-label="6-12 months">
+                            <span class="option-label">6 - 12 months</span>
+                            <span class="option-score">2</span>
+                        </label>
+                        <label class="radio-option" data-criterion="timeline">
+                            <input type="radio" name="timeline" value="1" data-label=">12 months">
+                            <span class="option-label">&gt;12 months</span>
+                            <span class="option-score">1</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Placement -->
+                <div class="criteria-section">
+                    <label class="criteria-label">🎯 Placement Probability</label>
+                    <div class="radio-group">
+                        <label class="radio-option" data-criterion="placement">
+                            <input type="radio" name="placement" value="4" data-label="Yes">
+                            <span class="option-label">Yes - High Confidence</span>
+                            <span class="option-score">4</span>
+                        </label>
+                        <label class="radio-option" data-criterion="placement">
+                            <input type="radio" name="placement" value="2" data-label="Likely">
+                            <span class="option-label">Likely</span>
+                            <span class="option-score">2</span>
+                        </label>
+                        <label class="radio-option" data-criterion="placement">
+                            <input type="radio" name="placement" value="0" data-label="No">
+                            <span class="option-label">No / Uncertain</span>
+                            <span class="option-score">0</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Type of Aircraft -->
+                <div class="criteria-section">
+                    <label class="criteria-label">✈️ Aircraft Type</label>
+                    <div class="radio-group">
+                        <label class="radio-option" data-criterion="type">
+                            <input type="radio" name="type" value="2" data-label="Narrowbody">
+                            <span class="option-label">Narrowbody</span>
+                            <span class="option-score">2</span>
+                        </label>
+                        <label class="radio-option" data-criterion="type">
+                            <input type="radio" name="type" value="1" data-label="Widebody">
+                            <span class="option-label">Widebody</span>
+                            <span class="option-score">1</span>
+                        </label>
+                    </div>
                 </div>
             </div>
             
-            <!-- Project Timeline -->
-            <div class="criteria-section">
-                <label class="criteria-label">⏱️ Project Timeline (months)</label>
-                <div class="radio-group">
-                    <label class="radio-option" data-criterion="timeline">
-                        <input type="radio" name="timeline" value="3" data-label="0-6 months">
-                        <span class="option-label">0 - 6 months</span>
-                        <span class="option-score">3</span>
-                    </label>
-                    <label class="radio-option" data-criterion="timeline">
-                        <input type="radio" name="timeline" value="2" data-label="6-12 months">
-                        <span class="option-label">6 - 12 months</span>
-                        <span class="option-score">2</span>
-                    </label>
-                    <label class="radio-option" data-criterion="timeline">
-                        <input type="radio" name="timeline" value="1" data-label=">12 months">
-                        <span class="option-label">&gt;12 months</span>
-                        <span class="option-score">1</span>
-                    </label>
+            <div class="score-column">
+                <div class="total-score">
+                    <h2>FINAL SCORE</h2>
+                    <div class="score" id="totalScore">0</div>
+                    <div class="max-score">out of 13 points</div>
+                    <div class="rating" id="rating">SELECT CRITERIA</div>
+                    
+                    <div class="actions">
+                        <button class="btn-primary" onclick="resetForm()">🔄 Reset</button>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Placement -->
-            <div class="criteria-section">
-                <label class="criteria-label">🎯 Placement Probability</label>
-                <div class="radio-group">
-                    <label class="radio-option" data-criterion="placement">
-                        <input type="radio" name="placement" value="4" data-label="Yes">
-                        <span class="option-label">Yes - High Confidence</span>
-                        <span class="option-score">4</span>
-                    </label>
-                    <label class="radio-option" data-criterion="placement">
-                        <input type="radio" name="placement" value="2" data-label="Likely">
-                        <span class="option-label">Likely</span>
-                        <span class="option-score">2</span>
-                    </label>
-                    <label class="radio-option" data-criterion="placement">
-                        <input type="radio" name="placement" value="0" data-label="No">
-                        <span class="option-label">No / Uncertain</span>
-                        <span class="option-score">0</span>
-                    </label>
-                </div>
-            </div>
-            
-            <!-- Type of Aircraft -->
-            <div class="criteria-section">
-                <label class="criteria-label">✈️ Aircraft Type</label>
-                <div class="radio-group">
-                    <label class="radio-option" data-criterion="type">
-                        <input type="radio" name="type" value="2" data-label="Narrowbody">
-                        <span class="option-label">Narrowbody</span>
-                        <span class="option-score">2</span>
-                    </label>
-                    <label class="radio-option" data-criterion="type">
-                        <input type="radio" name="type" value="1" data-label="Widebody">
-                        <span class="option-label">Widebody</span>
-                        <span class="option-score">1</span>
-                    </label>
-                </div>
-            </div>
-            
-            <div class="score-breakdown" id="breakdown">
-                <h3>Score Breakdown</h3>
-                <div class="breakdown-item" id="profit-breakdown">
-                    <span>Profit</span>
-                    <span>-</span>
-                </div>
-                <div class="breakdown-item" id="timeline-breakdown">
-                    <span>Project Timeline</span>
-                    <span>-</span>
-                </div>
-                <div class="breakdown-item" id="placement-breakdown">
-                    <span>Placement</span>
-                    <span>-</span>
-                </div>
-                <div class="breakdown-item" id="type-breakdown">
-                    <span>Type</span>
-                    <span>-</span>
-                </div>
-            </div>
-            
-            <div class="total-score">
-                <h2>FINAL SCORE</h2>
-                <div class="score" id="totalScore">0</div>
-                <div class="max-score">out of 13 points</div>
-                <div class="rating" id="rating">SELECT CRITERIA</div>
-            </div>
-            
-            <div class="actions">
-                <button class="btn-primary" onclick="resetForm()">🔄 Reset</button>
             </div>
         </div>
     </div>
@@ -402,19 +351,10 @@
                 // Update score
                 scores[this.name] = parseInt(this.value);
                 
-                // Update breakdown
-                updateBreakdown(this.name, this.getAttribute('data-label'), this.value);
-                
                 // Calculate total
                 calculateTotal();
             });
         });
-        
-        function updateBreakdown(criterion, label, score) {
-            const element = document.getElementById(`${criterion}-breakdown`);
-            element.innerHTML = `<span>${capitalize(criterion)}: ${label}</span><span>${score} pts</span>`;
-            element.classList.add('scored');
-        }
         
         function calculateTotal() {
             const total = scores.profit + scores.timeline + scores.placement + scores.type;
@@ -432,10 +372,6 @@
             return 'SELECT CRITERIA';
         }
         
-        function capitalize(str) {
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        }
-        
         function resetForm() {
             if (confirm('Reset all selections?')) {
                 // Clear all radio selections
@@ -451,19 +387,9 @@
                 // Reset scores
                 scores = { profit: 0, timeline: 0, placement: 0, type: 0 };
                 
-                // Reset breakdown
-                document.querySelectorAll('.breakdown-item').forEach(item => {
-                    item.classList.remove('scored');
-                    const label = item.querySelector('span:first-child').textContent.split(':')[0];
-                    item.innerHTML = `<span>${label}</span><span>-</span>`;
-                });
-                
                 // Reset total
                 document.getElementById('totalScore').textContent = '0';
                 document.getElementById('rating').textContent = 'SELECT CRITERIA';
-                
-                // Clear deal name
-                document.getElementById('dealName').value = '';
             }
         }
     </script>
